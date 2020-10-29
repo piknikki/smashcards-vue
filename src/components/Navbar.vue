@@ -1,8 +1,15 @@
 <template>
   <div class="main-navbar">
     <nav class="navbar" role="navigation">
+      <div class="navbar-brand">
+        <img class="logo" src="../assets/logo.png">
+      </div>
+
       <div class="navbar-menu">
-        <div class="navbar-start">
+        <div class="navbar-start is-vcentered">
+          <div class="navbar-item title">SmashCards</div>
+        </div>
+        <div class="navbar-end">
           <a class="navbar-item">
             Home
           </a>
@@ -26,5 +33,8 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+  width: 75px;
+}
 
 </style>
