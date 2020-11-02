@@ -29,7 +29,10 @@ export default {
   },
   methods: {
     deleteCard (id) {
-      this.allCards = this.allCards.filter(card => card.id !== id)
+      db.collection('allCards').doc(id).delete()
+        .then(() => {
+          this.allCards = this.allCards.filter(card => card.id !== id)
+        })
     }
   },
   created () {
