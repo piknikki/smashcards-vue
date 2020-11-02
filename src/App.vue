@@ -15,7 +15,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Source Code Pro', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

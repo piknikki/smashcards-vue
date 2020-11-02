@@ -33,6 +33,10 @@ export default {
 </script>
 
 <style scoped>
+.main-navbar {
+  font-family: 'Orbitron', sans-serif;
+}
+
 .logo {
   width: 75px;
 }

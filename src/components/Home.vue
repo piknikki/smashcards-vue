@@ -1,10 +1,17 @@
 <template>
-  <div class="home">
-    <div v-for="card in allCards" :key="card.id">
-      <div class="card">
-        <div class="card-content">
-          {{ card.question }}
-        </div>
+  <div class="home tile is-ancestor">
+    <div class="tile is-3 is-parent" v-for="card in allCards" :key="card.id">
+      <div class="tile ">
+        <article class="tile is-child box">
+          <p class="title">
+            {{ card.question }}
+          </p>
+          <p class="subtitle">
+            <span>
+              <i class="fad fa-trash"></i>
+            </span>
+          </p>
+        </article>
       </div>
     </div>
   </div>
@@ -42,4 +49,17 @@ export default {
   font-size: 1.2rem;
 }
 
+.home {
+  padding: 40px;
+}
+
+.fa-trash {
+  font-size: 1.2em;
+  color: #aaa;
+}
+
+.title {
+  padding: 10px 0 20px;
+  font-size: 1.5rem;
+}
 </style>
