@@ -8,7 +8,7 @@
           </p>
           <p class="subtitle">
             <span>
-              <i class="fad fa-trash"></i>
+              <i class="fad fa-trash" @click="deleteCard(card.id)"></i>
             </span>
           </p>
         </article>
@@ -18,28 +18,29 @@
 </template>
 
 <script>
+import db from '../firebase/init'
+
 export default {
   name: 'Home',
   data () {
     return {
-      allCards: [
-        {
-          id: 1,
-          question: 'What is the difference between HTML, CSS, and JavaScript?',
-          answer: 'HTML is the web language, CSS creates styling, and JS adds interactivity.'
-        },
-        {
-          id: 2,
-          question: 'What are some frameworks for JS (front end)?',
-          answer: 'React, Vue, Angular.'
-        },
-        {
-          id: 3,
-          question: 'What are some frameworks for the back end?',
-          answer: 'Ruby. (is there anything else??)'
-        }
-      ]
+      allCards: []
     }
+  },
+  methods: {
+    deleteCard (id) {
+      this.allCards = this.allCards.filter(card => card.id !== id)
+    }
+  },
+  created () {
+    db.collection('allCards').get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          let card = doc.data()
+          card.id = doc.id
+          this.allCards.push(card)
+        })
+      })
   }
 }
 </script>
