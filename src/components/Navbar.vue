@@ -7,18 +7,21 @@
 
       <div class="navbar-menu">
         <div class="navbar-start is-vcentered">
-          <div class="navbar-item title">SmashCards</div>
+          <router-link :to="{name: 'Home'}" class="navbar-item title">SmashCards</router-link>
         </div>
         <div class="navbar-end">
-          <a class="navbar-item">
-            Home
-          </a>
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
+          <router-link :to="{name: 'AddCard'}" class="navbar-item">
+            <span class="fa-layers fa-fw">
+              <i class="fas fa-circle fa-3x"></i>
+              <i class="fas fa-plus fa-2x" data-fa-transform="right-5"></i>
+            </span>
+          </router-link>
+<!--          <a class="navbar-item">-->
+<!--            About-->
+<!--          </a>-->
+<!--          <a class="navbar-item">-->
+<!--            Contact-->
+<!--          </a>-->
         </div>
 
       </div>
@@ -39,6 +42,19 @@ export default {
 
 .logo {
   width: 75px;
+}
+
+.fa-circle {
+  color: #38445D;
+}
+
+.fa-plus {
+  color: #E6676E;
+}
+
+a.title:hover {
+  background: #FFFFFF;
+  color: #363636;
 }
 
 </style>
