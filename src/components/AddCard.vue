@@ -1,15 +1,57 @@
 <template>
-  <div>
-    <h2>Add card</h2>
+  <div class="add-card container">
+    <h2 class="title">Add a new card</h2>
+    <form @submit.prevent="AddCard">
+      <div class="field box">
+        <label for="question">Card Question:</label>
+        <div class="control">
+          <input type="text" name="question" v-model="question">
+        </div>
+        <label for="answer">Card Answer:</label>
+        <div class="control">
+          <input type="text" name="answer" v-model="answer">
+        </div>
+      </div>
+      <button class="button">Add Card</button>
+    </form>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AddSmoothie'
+  name: 'AddSmoothie',
+  data () {
+    return {
+      question: null,
+      answer: null
+    }
+  },
+  methods: {
+    AddQuestion() {
+      console.log(this.question)
+      console.log(this.answer)
+      this.question = ''
+      this.answer = ''
+    }
+  }
 }
 </script>
 
 <style scoped>
+.add-card {
+  margin-top: 60px;
+  padding: 20px;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.control {
+  padding-bottom: 10px;
+}
+
+.button {
+  background: #38445D;
+  color: #E6676E;
+}
 
 </style>
