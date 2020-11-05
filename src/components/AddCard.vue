@@ -11,6 +11,13 @@
         <div class="control">
           <input type="text" name="answer" v-model="answer">
         </div>
+
+        <div class="field box card-box">
+          <h1>Front:  {{ question }}</h1>
+          <br>
+          <br>
+          <h1>Back:  {{ answer }}</h1>
+        </div>
       </div>
       <button class="button">Add Card</button>
     </form>
@@ -27,7 +34,7 @@ export default {
     }
   },
   methods: {
-    AddQuestion() {
+    AddCard () {
       console.log(this.question)
       console.log(this.answer)
       this.question = ''
@@ -41,17 +48,21 @@ export default {
 .add-card {
   margin-top: 60px;
   padding: 20px;
-  max-width: 500px;
+  max-width: 600px;
   line-height: 1.5;
 }
 
 .control {
+  padding-top: 5px;
   padding-bottom: 10px;
+}
+
+.card-box {
+  padding: 40px;
 }
 
 .button {
   background: #38445D;
   color: #E6676E;
 }
-
 </style>
