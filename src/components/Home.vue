@@ -4,12 +4,16 @@
       <div class="tile">
         <article class="tile is-child box">
           <p class="title">
-            {{ card.question }}
+            Q:  {{ card.question }}
           </p>
           <p class="subtitle">
             <span @click="deleteCard(card.id)">
               <i class="fad fa-trash"></i>
             </span>
+          </p>
+          <br>
+          <p>
+            A:  {{ card.answer }}
           </p>
         </article>
       </div>

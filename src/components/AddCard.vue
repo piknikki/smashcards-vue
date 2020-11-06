@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import db from '../firebase/init'
+
 export default {
   name: 'AddSmoothie',
   data () {
@@ -35,10 +37,16 @@ export default {
   },
   methods: {
     AddCard () {
-      console.log(this.question)
-      console.log(this.answer)
-      this.question = ''
-      this.answer = ''
+      db.collection('allCards').add({
+        question: this.question,
+        answer: this.answer
+      })
+        .then(() => {
+          this.$router.push('/')
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   }
 }
