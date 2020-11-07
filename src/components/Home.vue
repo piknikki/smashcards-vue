@@ -7,13 +7,19 @@
             Q:  {{ card.question }}
           </p>
           <p class="subtitle">
+            <span>
+              <router-link :to="{ name: 'EditCard', params: {card_id: card.id}}">
+                <i class="fal fa-edit"></i>
+              </router-link>
+            </span>
             <span @click="deleteCard(card.id)">
-              <i class="fad fa-trash"></i>
+              <i class="fal fa-trash"></i>
             </span>
           </p>
           <br>
           <p>
             A:  {{ card.answer }}
+            ID: {{ card.id }}
           </p>
         </article>
       </div>
@@ -61,9 +67,10 @@ export default {
   padding: 40px;
 }
 
-.fa-trash {
-  font-size: 1.2em;
-  color: #aaa;
+.fa-trash,
+.fa-edit {
+  font-size: 1em;
+  color: #764665;
   cursor: pointer;
 }
 

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../components/Home'
 import AddCard from '../components/AddCard'
+import EditCard from '../components/EditCard'
 
 Vue.use(Router)
 
@@ -17,6 +18,11 @@ export default new Router({
       path: '/add-card',
       name: 'AddCard',
       component: AddCard
+    },
+    {
+      path: '/edit-card/:card_id',
+      name: 'EditCard',
+      component: EditCard
     }
   ]
 })

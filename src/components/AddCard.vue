@@ -71,6 +71,6 @@ export default {
 
 .button {
   background: #38445D;
-  color: #E6676E;
+  color: #F66C6F;
 }
 </style>
