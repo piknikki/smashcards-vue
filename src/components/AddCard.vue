@@ -26,6 +26,7 @@
 
 <script>
 import db from '../firebase/init'
+import slugify from 'slugify'
 
 export default {
   name: 'AddSmoothie',
@@ -37,9 +38,18 @@ export default {
   },
   methods: {
     AddCard () {
+      if (this.question) {
+        this.slug = slugify(this.question, {
+          replacement: '-',
+          remove: /[$*_+~?.'"!\-:@]/g,
+          lower: true
+        })
+      }
+
       db.collection('allCards').add({
         question: this.question,
-        answer: this.answer
+        answer: this.answer,
+        slug: this.slug
       })
         .then(() => {
           this.$router.push('/')

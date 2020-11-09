@@ -20,7 +20,7 @@ export default new Router({
       component: AddCard
     },
     {
-      path: '/edit-card/:card_id',
+      path: '/edit-card/:slug',
       name: 'EditCard',
       component: EditCard
     }

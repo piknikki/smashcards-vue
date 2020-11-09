@@ -8,7 +8,7 @@
           </p>
           <p class="subtitle">
             <span>
-              <router-link :to="{ name: 'EditCard', params: {card_id: card.id}}">
+              <router-link :to="{ name: 'EditCard', params: {slug: card.slug}}">
                 <i class="fal fa-edit"></i>
               </router-link>
             </span>
@@ -20,6 +20,7 @@
           <p>
             A:  {{ card.answer }}
             ID: {{ card.id }}
+            slug: {{ card.slug }}
           </p>
         </article>
       </div>
