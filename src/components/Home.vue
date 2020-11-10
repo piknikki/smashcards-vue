@@ -19,8 +19,6 @@
           <br>
           <p>
             A:  {{ card.answer }}
-            ID: {{ card.id }}
-            slug: {{ card.slug }}
           </p>
         </article>
       </div>

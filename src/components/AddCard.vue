@@ -3,11 +3,11 @@
     <h2 class="title">Add a new card</h2>
     <form @submit.prevent="AddCard">
       <div class="field box">
-        <label for="question">Card Question:</label>
+        <label for="question">Question:</label>
         <div class="control">
           <input type="text" name="question" v-model="question">
         </div>
-        <label for="answer">Card Answer:</label>
+        <label for="answer">Answer:</label>
         <div class="control">
           <input type="text" name="answer" v-model="answer">
         </div>

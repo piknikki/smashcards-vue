@@ -1,6 +1,26 @@
 <template>
   <div v-if="card" class="edit-card container">
-    <h2>Edit card {{ this.card.question }}</h2>
+    <h2 class="card-header-title">Edit card</h2>
+    <form @submit.prevent="EditCard">
+      <div class="field box">
+        <label for="question">Question:</label>
+        <div class="control">
+          <input type="text" name="question" v-model="card.question">
+        </div>
+        <label for="answer">Answer:</label>
+        <div class="control">
+          <input type="text" name="answer" v-model="card.answer">
+        </div>
+
+        <div class="field box card-box">
+          <h1>Front:  {{ card.question }}</h1>
+          <br>
+          <br>
+          <h1>Back:  {{ card.answer }}</h1>
+        </div>
+      </div>
+      <button class="button">Update Card</button>
+    </form>
   </div>
 </template>
 
@@ -21,7 +41,6 @@ export default {
         snapshot.forEach(doc => {
           this.card = doc.data()
           this.card.id = doc.id
-          console.log(this.card)
         })
       })
       .catch(err => console.log(err))
@@ -30,5 +49,25 @@ export default {
 </script>
 
 <style scoped>
+.edit-card {
+  margin-top: 60px;
+  padding: 20px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.control {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.card-box {
+  padding: 40px;
+}
+
+.button {
+  background: #38445D;
+  color: #F66C6F;
+}
 
 </style>
