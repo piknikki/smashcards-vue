@@ -53,11 +53,8 @@ export default {
 }
 
 .router-link-active:hover,
-.navbar-item:hover {
-  background: #FFFFFF;
-}
-
-a.title:hover {
+.navbar-item:hover,
+a.navbar-item:focus {
   background: #FFFFFF;
   color: #363636;
 }

@@ -26,6 +26,7 @@
 
 <script>
 import db from '../firebase/init'
+import slugify from 'slugify'
 
 export default {
   name: 'EditCard',
@@ -44,6 +45,29 @@ export default {
         })
       })
       .catch(err => console.log(err))
+  },
+  methods: {
+    EditCard () {
+      if (this.card.question) {
+        this.card.slug = slugify(this.card.question, {
+          replacement: '-',
+          remove: /[$*_+~?.'"!\-:@]/g,
+          lower: true
+        })
+      }
+
+      db.collection('allCards').doc(this.card.id).update({
+        question: this.card.question,
+        answer: this.card.answer,
+        slug: this.card.slug
+      })
+        .then(() => {
+          this.$router.push('/')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
   }
 }
 </script>
