@@ -2,18 +2,18 @@
   <div class="home tile is-ancestor tile-column">
     <div class="tile is-3 is-parent is-horizontal flip-container" v-for="card in allCards" :key="card.id" @click="flipCard(card)">
       <transition name="flip" class="tile">
-          <p class="card tile is-child" v-bind:key="card.flipped" >
-            {{ card.flipped? card.answer : card.question }}
-            <br>
-            <span class="icons-section">
-              <router-link :to="{ name: 'EditCard', params: {slug: card.slug}}">
-                <i class="fal fa-edit fa-xs"></i>
-              </router-link>
-            </span>
-            <span class="icons-section" @click="deleteCard(card.id)">
-              <i class="fal fa-trash fa-xs"></i>
-            </span>
-          </p>
+        <div class="card tile is-child" v-bind:key="card.flipped" :class="{ title: !card.flipped, subtitle: card.flipped }">
+          <span class="icons-section is-flex is-pulled-left is-clearfix">
+            <router-link :to="{ name: 'EditCard', params: {slug: card.slug}}">
+              <i class="fal fa-edit fa-xs"></i>
+            </router-link>
+          </span>
+          <span class="icons-section is-flex is-pulled-right is-clearfix" @click="deleteCard(card.id)">
+            <i class="fal fa-trash fa-xs"></i>
+          </span>
+          <br>
+          {{ card.flipped? card.answer : card.question }}
+        </div>
       </transition>
     </div>
   </div>
@@ -81,7 +81,7 @@ export default {
 
 .icons-section {
   font-size: 0.8em;
-  margin: 20px 0;
+  margin: 0 5px 15px;
 }
 
 .flip-container {
@@ -90,6 +90,7 @@ export default {
 
 .card {
   cursor: pointer;
+  padding: 20px;
   will-change: transform;
 }
 
