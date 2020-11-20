@@ -2,8 +2,7 @@
   <div class="home tile is-ancestor tile-column">
     <div class="tile is-3 is-parent is-horizontal flip-container" v-for="card in allCards" :key="card.id" @click="flipCard(card)">
       <transition name="flip" class="tile">
-        <article class="tile is-child">
-          <p class="title card" v-bind:key="card.flipped">
+          <p class="card tile is-child" v-bind:key="card.flipped" >
             {{ card.flipped? card.answer : card.question }}
             <br>
             <span class="icons-section">
@@ -15,7 +14,6 @@
               <i class="fal fa-trash fa-xs"></i>
             </span>
           </p>
-        </article>
       </transition>
     </div>
   </div>
@@ -34,7 +32,7 @@ export default {
   },
   methods: {
     flipCard (card) {
-      card.isFlipped = !card.isFlipped
+      card.flipped = !card.flipped
     },
     deleteCard (id) {
       db.collection('allCards').doc(id).delete()
