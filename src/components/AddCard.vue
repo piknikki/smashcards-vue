@@ -29,7 +29,7 @@ import db from '../firebase/init'
 import slugify from 'slugify'
 
 export default {
-  name: 'AddSmoothie',
+  name: 'AddCard',
   data () {
     return {
       question: null,
@@ -49,9 +49,11 @@ export default {
       db.collection('allCards').add({
         question: this.question,
         answer: this.answer,
-        slug: this.slug
+        slug: this.slug,
+        flipped: false
       })
         .then(() => {
+          console.log(this.question, this.answer, this.slug)
           this.$router.push('/')
         })
         .catch(err => {
