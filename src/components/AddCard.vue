@@ -53,7 +53,6 @@ export default {
         flipped: false
       })
         .then(() => {
-          console.log(this.question, this.answer, this.slug)
           this.$router.push('/')
         })
         .catch(err => {
