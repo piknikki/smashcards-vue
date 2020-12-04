@@ -89,7 +89,7 @@ export default {
 }
 
 .card {
-  cursor: pointer;
+  cursor: grabbing;
   padding: 20px;
   will-change: transform;
 }
