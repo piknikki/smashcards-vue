@@ -5,11 +5,11 @@
       <div class="field box">
         <label for="question">Question:</label>
         <div class="control">
-          <input type="text" name="question" v-model="question">
+          <textarea class="textarea" name="question" v-model="question" rows="2"></textarea>
         </div>
         <label for="answer">Answer:</label>
         <div class="control">
-          <input type="text" name="answer" v-model="answer">
+          <textarea class="textarea answer" name="answer" v-model="answer" rows="2"></textarea>
         </div>
 
         <div class="field box card-box">
@@ -72,8 +72,9 @@ export default {
 }
 
 .control {
-  padding-top: 5px;
-  padding-bottom: 10px;
+  padding: 20px 10px;
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 .card-box {
@@ -83,5 +84,13 @@ export default {
 .button {
   background: #38445D;
   color: #F66C6F;
+}
+
+textarea {
+  border-color: #38445D;
+}
+
+.answer {
+  margin-bottom: 10px
 }
 </style>
