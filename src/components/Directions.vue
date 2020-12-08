@@ -1,6 +1,6 @@
 <template>
   <div class="directions has-text-left container" v-if="this.$route.name == 'Home'">
-    <h3 @click="toggle = !toggle" class="subtitle">Directions  (click to hide/show)</h3>
+    <h3 @click="toggle = !toggle" class="subtitle">Directions  (click here to hide/show)</h3>
     <ul v-show="toggle">
       <li>
         Size your window for the number of questions you want to attempt at a time.
