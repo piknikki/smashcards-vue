@@ -9,7 +9,10 @@
         As you answer questions, click to flip and see the answer.
       </li>
       <li>
-        Leave the answer showing, so that when you flip all the cards, you can go back and answer them in reverse.
+        Play around with answering in bingo patterns or randomly, or easiest to hardest/vice versa, or whatever order you feel like.
+      </li>
+      <li>
+        Leave the answer showing, so that when you flip all the cards, you can go back and answer them in reverse (Jeopardy-style!).
       </li>
       <li>
         Scroll down for more. They're loaded randomly, so you could see any topic at any time.
