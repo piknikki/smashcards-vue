@@ -26,7 +26,7 @@ export default {
   name: 'Directions',
   data () {
     return {
-      toggle: false
+      toggle: true
     }
   }
 }
@@ -35,6 +35,7 @@ export default {
 <style>
 .directions {
   padding: 20px 80px 5px;
+  cursor: pointer;
 }
 
 ul {
