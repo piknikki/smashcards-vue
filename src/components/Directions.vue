@@ -38,6 +38,9 @@ export default {
 <style>
 .directions {
   padding: 20px 80px 5px;
+}
+
+h3 {
   cursor: pointer;
 }
 
