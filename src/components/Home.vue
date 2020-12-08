@@ -60,7 +60,7 @@ export default {
 
 <style scoped>
 .home {
-  padding: 40px;
+  padding: 20px 40px 40px;
 }
 
 .fa-trash,
@@ -109,3 +109,27 @@ export default {
 }
 
 </style>
+
+<!--// scroll () {-->
+<!--//   // calculate bottom of page as true/false, then execute something-->
+<!--//   window.onscroll = () => {-->
+<!--//     let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight-->
+<!--//-->
+<!--//     if (bottomOfWindow) {-->
+<!--//       console.log('this is the bottom')-->
+<!--//-->
+<!--//       db.collection('allCards').get()-->
+<!--//         .then(snapshot => {-->
+<!--//           snapshot.forEach(doc => {-->
+<!--//             let card = doc.data()-->
+<!--//             card.id = doc.id-->
+<!--//             this.allCards.push(card)-->
+<!--//           })-->
+<!--//         })-->
+<!--//     }-->
+<!--//   }-->
+<!--// }-->
+<!--},-->
+<!--// mounted () {-->
+<!--//   this.scroll()-->
+<!--// }-->
