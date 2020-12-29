@@ -10,14 +10,15 @@
           <router-link :to="{name: 'Home'}" class="navbar-item title">SmashCards</router-link>
         </div>
         <div class="navbar-end is-vcentered">
-          <router-link v-if="loggedIn" :to="{name: 'AddCard'}" class="navbar-item">
+          <router-link :to="{name: 'AddCard'}" class="navbar-item">
             <span class="fa-layers fa-fw">
               <i class="fas fa-circle fa-3x"></i>
               <i class="fas fa-plus fa-2x" data-fa-transform="right-5"></i>
             </span>
           </router-link>
-          <router-link to="/signup" class="navbar-item signup">Signup</router-link>
-          <router-link to="/login" class="navbar-item login">Login</router-link>
+          <router-link :to="{ name: 'Signup' }" class="navbar-item signup">Sign Up</router-link>
+          <router-link :to="{ name: 'Login' }" class="navbar-item login">Log In</router-link>
+          <a @click="logOut" class="navbar-item logout">Log Out</a>
         </div>
       </div>
     </nav>
@@ -25,11 +26,21 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   name: 'Navbar',
   data () {
     return {
-      loggedIn: false
+      loggedIn: true
+    }
+  },
+  methods: {
+    logOut () {
+      firebase.auth().signOut()
+        .then(() => {
+          this.$router.push({ name: 'Login' })
+        })
     }
   }
 }
@@ -60,8 +71,11 @@ a.navbar-item:focus {
 }
 
 .signup,
-.login {
+.login,
+.logout {
   font-size: 1.5em;
+  margin-left: 40px;
 }
+
 
 </style>
