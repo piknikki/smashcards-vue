@@ -4,6 +4,17 @@
     <div class="box">
       <form @submit.prevent="signUp">
         <div class="field">
+          <label class="label" for="email">Email</label>
+          <div class="control has-icons-left has-icons-right">
+            <input id="email" v-model="email" class="input" type="text" placeholder="What is your email?" >
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </div>
+          <p class="help">We need this in case you can't remember your password.</p>
+        </div>
+
+        <div class="field">
           <label class="label" for="alias">Alias</label>
           <div class="control has-icons-left has-icons-right">
             <input id="alias" v-model="alias" class="input" type="text" placeholder="What should we call you?" >
@@ -17,7 +28,7 @@
 <!--              <i class="fas fa-exclamation-triangle"></i>-->
 <!--            </span>-->
           </div>
-          <p class="help">{{ this.aliasFeedback }}</p>
+          <p class="help">{{ this.feedback }}</p>
         </div>
 
         <div class="field">
@@ -55,6 +66,7 @@
 <script>
 import slugify from 'slugify'
 import db from '../firebase/init'
+import firebase from 'firebase'
 
 export default {
   name: 'Signup',
@@ -62,17 +74,16 @@ export default {
     return {
       validAlias: true,
       validPassword: true,
+      email: null,
       alias: null,
       password: null,
       slug: null,
-      aliasFeedback: null
+      feedback: null
     }
   },
   methods: {
     signUp () {
-      if (this.alias) {
-        // slugify the alias
-        // check if it exists on firebase -- already taken?
+      if (this.alias && this.password && this.email) {
         this.slug = slugify(this.alias, {
           replacement: '-',
           remove: /[$*_+~.()'"!?\-:@]/g,
@@ -81,13 +92,18 @@ export default {
         let ref = db.collection('users').doc(this.slug)
         ref.get().then(doc => {
           if (doc.exists) {
-            this.aliasFeedback = 'Sorry, that alias already exists. Pick another one.'
+            this.feedback = 'Sorry, that alias already exists. Pick another one.'
           } else {
-            this.aliasFeedback = `Hey, ${this.alias}!`
+            this.feedback = `Hey, ${this.alias}!`
+            firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+              .catch(err => {
+                console.log(err)
+                this.feedback = err.message
+              })
           }
         })
       } else {
-        this.aliasFeedback = 'You must enter an alias.'
+        this.feedback = 'You must complete all fields.'
       }
     }
   }
