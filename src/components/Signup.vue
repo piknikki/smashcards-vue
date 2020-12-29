@@ -96,6 +96,16 @@ export default {
           } else {
             this.feedback = `Hey, ${this.alias}!`
             firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+              .then(cred => {
+                console.log(cred.user)
+                ref.set({
+                  alias: this.alias,
+                  user_id: cred.user.uid
+                })
+              })
+              .then(() => {
+                this.$router.push({ name: 'Home' })
+              })
               .catch(err => {
                 console.log(err)
                 this.feedback = err.message
