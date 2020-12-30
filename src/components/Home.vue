@@ -35,14 +35,15 @@ export default {
   methods: {
     loadMore () {
       this.busy = true
+      const arr = []
       db.collection('allCards').get()
         .then(snapshot => {
-          // snapshot.forEach(doc => {
-          //   let card = doc.data()
-          //   card.id = doc.id
-          //   this.allCards.push(card)
-          // })
-          const append = snapshot.docs.slice(this.allCards.length, this.allCards.length + this.limit)
+          snapshot.forEach(doc => {
+            let card = doc.data()
+            card.id = doc.id
+            arr.push(card)
+          })
+          const append = arr.slice(this.allCards.length, this.allCards.length + this.limit)
           this.allCards = this.allCards.concat(append)
 
           this.busy = false
