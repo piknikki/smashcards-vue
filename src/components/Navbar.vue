@@ -10,6 +10,7 @@
           <router-link :to="{name: 'Home'}" class="navbar-item title">SmashCards</router-link>
         </div>
         <div class="navbar-end is-vcentered">
+          <h4 v-if="user" class="navbar-item greet">{{ user.email }}</h4>
           <router-link v-if="user" :to="{name: 'AddCard'}" class="navbar-item">
             <span class="fa-layers fa-fw">
               <i class="fas fa-circle fa-3x"></i>
@@ -32,7 +33,6 @@ export default {
   name: 'Navbar',
   data () {
     return {
-      loggedIn: true,
       user: null
     }
   },
@@ -45,9 +45,9 @@ export default {
     }
   },
   created () {
-    firebase.auth().onAuthStateChanged((cred) => {
-      if (cred) {
-        this.user = cred
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user
       } else {
         this.user = null
       }
@@ -85,5 +85,17 @@ a.navbar-item:focus {
 .logout {
   font-size: 1.5em;
   margin-left: 40px;
+}
+
+.greet {
+  color: #E6676E;
+  font-size: 1em;
+  margin-right: 40px;
+}
+
+.greet:hover,
+.greet:focus {
+  color: #E6676E;
+  cursor: default;
 }
 </style>
