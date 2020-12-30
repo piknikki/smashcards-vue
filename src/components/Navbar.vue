@@ -1,11 +1,11 @@
 <template>
   <div class="main-navbar">
     <nav class="navbar" role="navigation">
-      <div class="navbar-brand">
+      <div class="navbar-brand is-flex-touch is-justify-content-center">
         <img class="logo" src="../assets/logo.png">
       </div>
 
-      <div class="navbar-menu">
+      <div class="navbar-menu is-flex-touch is-justify-content-space-between is-flex-wrap-wrap">
         <div class="navbar-start is-vcentered">
           <router-link :to="{name: 'Home'}" class="navbar-item title">SmashCards</router-link>
         </div>
@@ -98,4 +98,28 @@ a.navbar-item:focus {
   color: #E6676E;
   cursor: default;
 }
+
+@media screen and (max-width: 1023px) {
+  .navbar-menu {
+    box-shadow: none;
+  }
+
+  .greet,
+  .logout {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 534px) {
+  .navbar-menu {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .greet,
+  .logout {
+    margin: 0;
+  }
+}
+
 </style>

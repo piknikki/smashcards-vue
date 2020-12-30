@@ -1,7 +1,7 @@
 <template>
-  <div class="directions has-text-left container" v-if="this.$route.name == 'Home'">
-    <h3 @click="toggle = !toggle" class="subtitle">Directions  (click here to hide/show)</h3>
-    <ul v-show="toggle">
+  <div id="directions" class="directions has-text-left container" v-if="this.$route.name == 'Home'">
+    <h3 @click="toggle = !toggle" class="subtitle is-hidden-touch">Directions  (click here to hide/show)</h3>
+    <ul v-show="toggle" class="is-hidden-touch">
       <li>
         Size your window for the number of questions you want to attempt at a time.
       </li>
@@ -46,6 +46,12 @@ h3 {
 
 ul {
   list-style-type: circle;
+}
+
+@media screen and (max-width: 534px) {
+  #directions {
+    padding: 10px;
+  }
 }
 
 </style>

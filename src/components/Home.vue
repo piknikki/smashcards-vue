@@ -43,7 +43,7 @@ export default {
   },
   created () {
     this.allCards.forEach((card) => {
-      this.$set(card, 'isFlipped', false)
+      this.$set(card, 'isFlipped', false) // sets a property for each card
     })
 
     db.collection('allCards').get()
@@ -106,6 +106,18 @@ export default {
 .flip-leave {
   transform: rotateY(180deg);
   opacity: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .home {
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 534px) {
+  .home {
+    padding: 10px;
+  }
 }
 
 </style>

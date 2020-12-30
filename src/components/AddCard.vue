@@ -41,7 +41,7 @@ export default {
       if (this.question) {
         this.slug = slugify(this.question, {
           replacement: '-',
-          remove: /[$*_+~?.'"!\-:@]/g,
+          remove: /[$*_+~.()'"!?\-:@]/g,
           lower: true
         })
       }

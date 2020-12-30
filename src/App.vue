@@ -28,4 +28,10 @@ export default {
   margin-top: 30px;
   padding: 40px;
 }
+
+@media screen and (max-width: 534px) {
+  #app {
+    padding: 10px;
+  }
+}
 </style>
