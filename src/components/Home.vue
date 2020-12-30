@@ -1,5 +1,5 @@
 <template>
-  <div class="home tile is-ancestor tile-column">
+  <div class="home tile is-ancestor tile-column" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="limit">
     <div class="tile is-3 is-parent is-horizontal flip-container" v-for="card in allCards" :key="card.id" @click="flipCard(card)">
       <transition name="flip" class="tile">
         <div class="card tile is-child" v-bind:key="card.flipped" :class="{ title: !card.flipped, subtitle: card.flipped }">
@@ -27,10 +27,29 @@ export default {
   data () {
     return {
       allCards: [],
+      limit: 12,
+      busy: false,
       isFlipped: false
     }
   },
   methods: {
+    loadMore () {
+      this.busy = true
+      const arr = []
+      db.collection('allCards').get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            let card = doc.data()
+            card.id = doc.id
+            arr.push(card)
+          })
+          const append = arr.slice(this.allCards.length, this.allCards.length + this.limit)
+          this.allCards = this.allCards.concat(append)
+
+          this.busy = false
+        })
+        .catch(err => console.log(err.message))
+    },
     flipCard (card) {
       card.flipped = !card.flipped
     },
@@ -42,18 +61,20 @@ export default {
     }
   },
   created () {
+    this.loadMore()
+
     this.allCards.forEach((card) => {
       this.$set(card, 'isFlipped', false) // sets a property for each card
     })
 
-    db.collection('allCards').get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          let card = doc.data()
-          card.id = doc.id
-          this.allCards.push(card)
-        })
-      })
+    // db.collection('allCards').get()
+    //   .then(snapshot => {
+    //     snapshot.forEach(doc => {
+    //       let card = doc.data()
+    //       card.id = doc.id
+    //       this.allCards.push(card)
+    //     })
+    //   })
   }
 }
 </script>

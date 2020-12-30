@@ -4,7 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import firebase from 'firebase'
+import infiniteScroll from 'vue-infinite-scroll'
+import AOS from 'aos'
 
+Vue.use(infiniteScroll)
 Vue.config.productionTip = false
 
 let app = null
@@ -17,5 +20,6 @@ firebase.auth().onAuthStateChanged(() => {
       components: { App },
       template: '<App/>'
     })
+    AOS.init()
   }
 })
