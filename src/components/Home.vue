@@ -1,6 +1,7 @@
 <template>
   <div class="home tile is-ancestor tile-column" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="limit">
-    <div class="tile is-3 is-parent is-horizontal flip-container" v-for="card in allCards" :key="card.id" @click="flipCard(card)">
+    <div class="tile is-3 is-parent is-horizontal flip-container" v-for="card in allCards" :key="card.id" @click="flipCard(card)"
+         data-aos="slide-up" data-aos-offset="200" data-aos-easing="ease-out-back">
       <transition name="flip" class="tile">
         <div class="card tile is-child" v-bind:key="card.flipped" :class="{ title: !card.flipped, subtitle: card.flipped }">
           <span class="icons-section is-flex is-pulled-left is-clearfix">
@@ -66,15 +67,6 @@ export default {
     this.allCards.forEach((card) => {
       this.$set(card, 'isFlipped', false) // sets a property for each card
     })
-
-    // db.collection('allCards').get()
-    //   .then(snapshot => {
-    //     snapshot.forEach(doc => {
-    //       let card = doc.data()
-    //       card.id = doc.id
-    //       this.allCards.push(card)
-    //     })
-    //   })
   }
 }
 </script>
@@ -142,27 +134,3 @@ export default {
 }
 
 </style>
-
-<!--// scroll () {-->
-<!--//   // calculate bottom of page as true/false, then execute something-->
-<!--//   window.onscroll = () => {-->
-<!--//     let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight-->
-<!--//-->
-<!--//     if (bottomOfWindow) {-->
-<!--//       console.log('this is the bottom')-->
-<!--//-->
-<!--//       db.collection('allCards').get()-->
-<!--//         .then(snapshot => {-->
-<!--//           snapshot.forEach(doc => {-->
-<!--//             let card = doc.data()-->
-<!--//             card.id = doc.id-->
-<!--//             this.allCards.push(card)-->
-<!--//           })-->
-<!--//         })-->
-<!--//     }-->
-<!--//   }-->
-<!--// }-->
-<!--},-->
-<!--// mounted () {-->
-<!--//   this.scroll()-->
-<!--// }-->
