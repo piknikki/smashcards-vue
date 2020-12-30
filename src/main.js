@@ -4,9 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import firebase from 'firebase'
-import infiniteScroll from 'vue-infinite-scroll'
 
-Vue.use(infiniteScroll)
 Vue.config.productionTip = false
 
 let app = null
