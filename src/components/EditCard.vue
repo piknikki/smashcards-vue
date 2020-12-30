@@ -51,7 +51,7 @@ export default {
       if (this.card.question) {
         this.card.slug = slugify(this.card.question, {
           replacement: '-',
-          remove: /[$*_+~?.'"!\-:@]/g,
+          remove: /[$*,_+~?.'"!\-:@]/g,
           lower: true
         })
       }

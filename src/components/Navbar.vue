@@ -10,15 +10,15 @@
           <router-link :to="{name: 'Home'}" class="navbar-item title">SmashCards</router-link>
         </div>
         <div class="navbar-end is-vcentered">
-          <router-link :to="{name: 'AddCard'}" class="navbar-item">
+          <router-link v-if="user" :to="{name: 'AddCard'}" class="navbar-item">
             <span class="fa-layers fa-fw">
               <i class="fas fa-circle fa-3x"></i>
               <i class="fas fa-plus fa-2x" data-fa-transform="right-5"></i>
             </span>
           </router-link>
-          <router-link :to="{ name: 'Signup' }" class="navbar-item signup">Sign Up</router-link>
-          <router-link :to="{ name: 'Login' }" class="navbar-item login">Log In</router-link>
-          <a @click="logOut" class="navbar-item logout">Log Out</a>
+          <router-link v-if="!user" :to="{ name: 'Signup' }" class="navbar-item signup">Sign Up</router-link>
+          <router-link v-if="!user" :to="{ name: 'Login' }" class="navbar-item login">Log In</router-link>
+          <a v-if="user" @click="logOut" class="navbar-item logout">Log Out</a>
         </div>
       </div>
     </nav>
@@ -32,7 +32,8 @@ export default {
   name: 'Navbar',
   data () {
     return {
-      loggedIn: true
+      loggedIn: true,
+      user: null
     }
   },
   methods: {
@@ -42,6 +43,15 @@ export default {
           this.$router.push({ name: 'Login' })
         })
     }
+  },
+  created () {
+    firebase.auth().onAuthStateChanged((cred) => {
+      if (cred) {
+        this.user = cred
+      } else {
+        this.user = null
+      }
+    })
   }
 }
 </script>
@@ -76,6 +86,4 @@ a.navbar-item:focus {
   font-size: 1.5em;
   margin-left: 40px;
 }
-
-
 </style>
