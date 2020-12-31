@@ -1,7 +1,6 @@
 <template>
-  <div class="home tile is-ancestor tile-column" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="limit">
-    <div class="tile is-3 is-parent is-horizontal flip-container" v-for="card in allCards" :key="card.id" @click="flipCard(card)"
-         data-aos="slide-up" data-aos-offset="200" data-aos-easing="ease-out-back">
+  <div class="home tile is-ancestor tile-column">
+    <div class="tile is-3 is-parent is-horizontal flip-container" v-for="card in allCards" :key="card.id" @click="flipCard(card)">
       <transition name="flip" class="tile">
         <div class="card tile is-child" v-bind:key="card.flipped" :class="{ title: !card.flipped, subtitle: card.flipped }">
           <span class="icons-section is-flex is-pulled-left is-clearfix">
@@ -22,35 +21,15 @@
 
 <script>
 import db from '../firebase/init'
-
 export default {
   name: 'Home',
   data () {
     return {
       allCards: [],
-      limit: 12,
-      busy: false,
       isFlipped: false
     }
   },
   methods: {
-    loadMore () {
-      this.busy = true
-      const arr = []
-      db.collection('allCards').get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            let card = doc.data()
-            card.id = doc.id
-            arr.push(card)
-          })
-          const append = arr.slice(this.allCards.length, this.allCards.length + this.limit)
-          this.allCards = this.allCards.concat(append)
-
-          this.busy = false
-        })
-        .catch(err => console.log(err.message))
-    },
     flipCard (card) {
       card.flipped = !card.flipped
     },
@@ -62,11 +41,17 @@ export default {
     }
   },
   created () {
-    this.loadMore()
-
     this.allCards.forEach((card) => {
       this.$set(card, 'isFlipped', false) // sets a property for each card
     })
+    db.collection('allCards').get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          let card = doc.data()
+          card.id = doc.id
+          this.allCards.push(card)
+        })
+      })
   }
 }
 </script>
@@ -75,62 +60,50 @@ export default {
 .home {
   padding: 20px 40px 40px;
 }
-
 .fa-trash,
 .fa-edit {
   font-size: 1em;
   color: #764665;
   cursor: pointer;
 }
-
 .title {
   padding: 10px 0 20px;
   font-size: 1.5rem;
 }
-
 .tile-column {
   flex-wrap: wrap;
 }
-
 .icons-section {
   font-size: 0.8em;
   margin: 0 5px 15px;
 }
-
 .flip-container {
   transition: all 0.3s ease;
 }
-
 .card {
   cursor: pointer;
   padding: 20px;
   will-change: transform;
 }
-
 .flip-enter-active {
   transition: all 0.4s ease;
 }
-
 .flip-leave-active {
   display: none;
 }
-
 .flip-enter,
 .flip-leave {
   transform: rotateY(180deg);
   opacity: 0;
 }
-
 @media screen and (max-width: 1023px) {
   .home {
     padding: 15px;
   }
 }
-
 @media screen and (max-width: 534px) {
   .home {
     padding: 10px;
   }
 }
-
 </style>
