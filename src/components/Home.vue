@@ -26,7 +26,7 @@ export default {
   data () {
     return {
       allCards: [],
-      isFlipped: false
+      flipped: false
     }
   },
   methods: {
@@ -41,9 +41,6 @@ export default {
     }
   },
   created () {
-    this.allCards.forEach((card) => {
-      this.$set(card, 'isFlipped', false) // sets a property for each card
-    })
     db.collection('allCards').get()
       .then(snapshot => {
         snapshot.forEach(doc => {
